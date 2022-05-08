@@ -1,0 +1,119 @@
+{
+	"info": {
+		"_postman_id": "72dc3126-7004-4300-b47f-1635c029190d",
+		"name": "GUMTREE ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API Test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ads API response Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Ads API response has a JSON body\", function () {",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"Ads API response Server response header\", function () {",
+							"    pm.response.to.have.header(\"Server\");",
+							"    pm.response.to.be.header(\"Server\", \"rhino-core-shield\")",
+							"})",
+							"",
+							"const jsonData = pm.response.json();",
+							"let FirstItem = jsonData.ads[0];",
+							"",
+							"pm.test(\"Ads API response has an id field and number data type \", function () {",
+							"    pm.expect(FirstItem).to.have.property(\"id\");",
+							"    pm.expect(FirstItem.id).to.be.a(\"number\");",
+							"});",
+							"",
+							"pm.test(\"Ads API Response has a title field and string data type\", function () {  ",
+							"    pm.expect(FirstItem).to.have.property(\"title\");",
+							"    pm.expect(FirstItem.title).to.be.a(\"string\");",
+							"});",
+							"",
+							"pm.test(\"Ads API Response has a picture field and array data type\", function () {  ",
+							"    pm.expect(FirstItem).to.have.property(\"pictures\");",
+							"    pm.expect(FirstItem.pictures).to.be.a(\"array\");",
+							"",
+							"});",
+							"",
+							"pm.test(\"Ads API Response has enddate field \", function () {",
+							"    pm.expect(FirstItem).to.have.property(\"endDate\");",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ecg-api.gumtree.com.au/api/papi/ads/search?categoryId=0&categoryRedirected=1&includeTopAds=1&keyword=Table&locationId=3003435&page=1&size=20&sortType=DATE_DESCENDING",
+					"protocol": "https",
+					"host": [
+						"ecg-api",
+						"gumtree",
+						"com",
+						"au"
+					],
+					"path": [
+						"api",
+						"papi",
+						"ads",
+						"search"
+					],
+					"query": [
+						{
+							"key": "categoryId",
+							"value": "0"
+						},
+						{
+							"key": "categoryRedirected",
+							"value": "1"
+						},
+						{
+							"key": "includeTopAds",
+							"value": "1"
+						},
+						{
+							"key": "keyword",
+							"value": "Table"
+						},
+						{
+							"key": "locationId",
+							"value": "3003435"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "20"
+						},
+						{
+							"key": "sortType",
+							"value": "DATE_DESCENDING"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
